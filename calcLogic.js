@@ -5,4 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let operator = document.querySelectorAll(".operator");
   let number = document.querySelectorAll(".number");
+
+  let previousScreen = document.querySelector(".previous");
+  let currentScreen = document.querySelector(".current");
 });
