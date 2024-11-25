@@ -18,7 +18,7 @@ body {
 }
 
 /* Display styling */
-.display {
+#display {
   height: 80px;
   background-color: #b3e5fc;
   color: #333;
