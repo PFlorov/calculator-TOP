@@ -1,15 +1,8 @@
-function add(number1, number2) {
-  return number1 + number2;
-}
+document.addEventListener("DOMContentLoaded", function () {
+  let clear = document.querySelector(".clear");
+  let equal = document.querySelector(".equal");
+  let decimal = document.querySelector(".decimal");
 
-function subtract(number1, number2) {
-  return number1 - number2;
-}
-
-function multiply(number1, number2) {
-  return number1 * number2;
-}
-
-function divide(number1, number2) {
-  return number1 / number2;
-}
+  let operator = document.querySelectorAll(".operator");
+  let number = document.querySelectorAll(".number");
+});
