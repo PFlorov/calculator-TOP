@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
   [...operators].map((op) =>
     op.addEventListener("click", function (e) {
       handleOperator(e.target.textContent);
-      previousScreen.textContent = `${previousValue}${operator} `.trim();
+      previousScreen.textContent = `${previousValue}${operator} `;
       currentScreen.textContent = currentValue;
     })
   );
@@ -42,6 +42,12 @@ document.addEventListener("DOMContentLoaded", function () {
     currentScreen.textContent = currentValue;
     previousScreen.textContent = previousValue;
   });
+
+  equal.addEventListener("click", function () {
+    calculate();
+    currentScreen.textContent = "";
+    previousScreen.textContent = previousValue;
+  });
 });
 
 let handleNumber = function handleNumber(num) {
@@ -51,7 +57,29 @@ let handleNumber = function handleNumber(num) {
 };
 
 let handleOperator = function handleOperator(op) {
-  operator = op.trim();
-  previousValue = currentValue.trim();
+  operator = op;
+  previousValue = currentValue;
   currentValue = "";
+};
+
+let calculate = function calculate() {
+  previousValue = Number(previousValue);
+  currentValue = Number(currentValue);
+
+  if (operator === "+") {
+    previousValue += currentValue;
+  } else if (operator === "-") {
+    previousValue -= currentValue;
+  } else if (operator === "x") {
+    previousValue *= currentValue;
+  } else if (operator === "÷") {
+    previousValue /= currentValue;
+  }
+  previousValue = round(previousValue);
+  previousValue = previousValue.toString();
+  currentValue = currentValue.toString();
+};
+
+let round = function round(num) {
+  return Math.round(num * 1000) / 1000;
 };
