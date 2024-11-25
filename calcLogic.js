@@ -7,22 +7,51 @@ document.addEventListener("DOMContentLoaded", function () {
   let equal = document.querySelector(".equal");
   let decimal = document.querySelector(".decimal");
 
-  let operator = document.querySelectorAll(".operator");
+  let operators = document.querySelectorAll(".operator");
   let number = document.querySelectorAll(".number");
 
   let previousScreen = document.querySelector(".previous");
   let currentScreen = document.querySelector(".current");
 
-  number.forEach((number) =>
+  /* number.forEach((number) =>
+    number.addEventListener("click", function (e) {
+      handleNumber(e.target.textContent);
+      currentScreen.textContent = currentValue;
+    })
+  ); */
+
+  [...number].map((number) =>
     number.addEventListener("click", function (e) {
       handleNumber(e.target.textContent);
       currentScreen.textContent = currentValue;
     })
   );
+
+  [...operators].map((op) =>
+    op.addEventListener("click", function (e) {
+      handleOperator(e.target.textContent);
+      previousScreen.textContent = `${previousValue}${operator} `.trim();
+      currentScreen.textContent = currentValue;
+    })
+  );
+
+  clear.addEventListener("click", function () {
+    previousValue = "";
+    currentValue = "";
+    operator = "";
+    currentScreen.textContent = currentValue;
+    previousScreen.textContent = previousValue;
+  });
 });
 
-function handleNumber(num) {
+let handleNumber = function handleNumber(num) {
   if (currentValue.length <= 5) {
     currentValue += num;
   }
-}
+};
+
+let handleOperator = function handleOperator(op) {
+  operator = op.trim();
+  previousValue = currentValue.trim();
+  currentValue = "";
+};
