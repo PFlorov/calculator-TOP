@@ -44,9 +44,15 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   equal.addEventListener("click", function () {
-    calculate();
-    currentScreen.textContent = "";
-    previousScreen.textContent = previousValue;
+    if (currentValue != "" && previousValue != "") {
+      calculate();
+      previousScreen.textContent = "";
+      currentScreen.textContent = previousValue;
+    }
+  });
+
+  decimal.addEventListener("click", function () {
+    addDecimal();
   });
 });
 
@@ -82,4 +88,10 @@ let calculate = function calculate() {
 
 let round = function round(num) {
   return Math.round(num * 1000) / 1000;
+};
+
+let addDecimal = function addDecimal() {
+  if (!currentValue.includes(".")) {
+    currentValue += ".";
+  }
 };
